@@ -1,0 +1,81 @@
+package org.firstinspires.ftc.teamcode.summersamples.D01code.visionbotMIDGE.subsytems;
+
+import android.util.Size;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+
+
+@Autonomous
+public class Vision extends OpMode{
+
+    private DcMotor fleft;
+    private DcMotor fright;
+    private DcMotor bright;
+    private DcMotor bleft;
+    private AprilTagProcessor tagProcessor;
+
+    @Override
+    public void init() {
+
+        bleft = hardwareMap.get(DcMotor.class, "bleft");
+        bright = hardwareMap.get(DcMotor.class, "bright");
+        fleft = hardwareMap.get(DcMotor.class, "fleft");
+        fright = hardwareMap.get(DcMotor.class, "fright");
+
+
+        bleft.setDirection(DcMotor.Direction.REVERSE);
+        fleft.setDirection(DcMotor.Direction.REVERSE);
+
+        AprilTagProcessor tagProcessor = new AprilTagProcessor.Builder()
+                .setDrawAxes(true)
+                .setDrawCubeProjection(true)
+                .setDrawTagID(true)
+                .setDrawTagOutline(true)
+                .build();
+
+        VisionPortal visionPortal = new VisionPortal.Builder()
+                .addProcessor(tagProcessor)
+                .setCamera(hardwareMap.get(WebcamName.class, "Webcam"))
+                .setCameraResolution(new Size(640, 480))
+                .build();
+
+    }
+
+    @Override
+    public void loop() {
+        if (tagProcessor.getDetections().size() > 0) {
+            AprilTagDetection tag = tagProcessor.getDetections().get(0);
+            int detectedTagID = tag.id;
+
+            if (detectedTagID == 4) {
+                // The robot has detected AprilTag ID 4, stop moving
+                bleft.setPower(0);
+                bright.setPower(0);
+                fleft.setPower(0);
+                fright.setPower(0);
+
+                telemetry.addData("Detected AprilTag ID 4", true);
+                telemetry.update();
+
+                // Add a delay to allow time for telemetry to update and for the robot to stop
+                try {
+                    wait(1000);// Adjust the sleep time as needed
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                // AprilTag not detected, keep moving
+                bleft.setPower(-0.1);
+                bright.setPower(0.1);
+                fleft.setPower(0.1);
+                fright.setPower(-0.1);
+            }
+        }
+    }
+}
