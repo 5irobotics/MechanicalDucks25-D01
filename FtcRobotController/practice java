@@ -1,0 +1,17 @@
+DcMotor motor;
+
+@Override
+public void runOpMode() {
+    motor = hardwareMap.get(DcMotor.class, "leftMotor");
+
+    motor.setDirection(DcMotor.Direction.FORWARD);
+    motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+    waitForStart();
+
+    while (opModeIsActive()) {
+        double power = -gamepad1.left_stick_y;  // Assume joystick input
+        motor.setPower(Range.clip(power, -1.0, 1.0));
+    }
+}
