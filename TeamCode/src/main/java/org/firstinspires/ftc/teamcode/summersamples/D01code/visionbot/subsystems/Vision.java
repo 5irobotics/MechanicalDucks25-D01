@@ -1,9 +1,8 @@
-package org.firstinspires.ftc.teamcode.summersamples.D01code.visionbotMIDGE.subsytems;
+package org.firstinspires.ftc.teamcode.summersamples.D01code.visionbot.subsystems;
 
 import android.util.Size;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
