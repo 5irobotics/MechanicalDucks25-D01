@@ -48,7 +48,7 @@ public class ConceptNullOp extends OpMode {
   private DcMotor BRight;
 
   public void init() {
-    FLeft =
+
   }
 
   @Override
