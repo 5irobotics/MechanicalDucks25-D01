@@ -19,6 +19,11 @@ public class Vision extends OpMode{
     private DcMotor bright;
     private DcMotor bleft;
     private AprilTagProcessor tagProcessor;
+    private DcMotor FLeft;
+    private DcMotor FRight;
+    private DcMotor BRight;
+    private DcMotor BLeft;
+    private AprilTagProcessor Webcam;
 
     @Override
     public void init() {
@@ -27,10 +32,17 @@ public class Vision extends OpMode{
         bright = hardwareMap.get(DcMotor.class, "bright");
         fleft = hardwareMap.get(DcMotor.class, "fleft");
         fright = hardwareMap.get(DcMotor.class, "fright");
+        BLeft = hardwareMap.get(DcMotor.class, "BLeft");
+        BRight = hardwareMap.get(DcMotor.class, "BRight");
+        FLeft = hardwareMap.get(DcMotor.class, "FLeft");
+        FRight = hardwareMap.get(DcMotor.class, "FRight");
+        Webcam = hardwareMap.get(AprilTagProcessor.class, "Webcam");
 
 
         bleft.setDirection(DcMotor.Direction.REVERSE);
         fleft.setDirection(DcMotor.Direction.REVERSE);
+        BLeft.setDirection(DcMotor.Direction.REVERSE);
+        FLeft.setDirection(DcMotor.Direction.REVERSE);
 
         AprilTagProcessor tagProcessor = new AprilTagProcessor.Builder()
                 .setDrawAxes(true)
@@ -51,6 +63,8 @@ public class Vision extends OpMode{
     public void loop() {
         if (tagProcessor.getDetections().size() > 0) {
             AprilTagDetection tag = tagProcessor.getDetections().get(0);
+        if (!Webcam.getDetections().isEmpty()) {
+            AprilTagDetection tag = Webcam.getDetections().get(0);
             int detectedTagID = tag.id;
 
             if (detectedTagID == 4) {
@@ -59,6 +73,10 @@ public class Vision extends OpMode{
                 bright.setPower(0);
                 fleft.setPower(0);
                 fright.setPower(0);
+                BLeft.setPower(0);
+                BRight.setPower(0);
+                FLeft.setPower(0);
+                FRight.setPower(0);
 
                 telemetry.addData("Detected AprilTag ID 4", true);
                 telemetry.update();
@@ -75,6 +93,10 @@ public class Vision extends OpMode{
                 bright.setPower(0.1);
                 fleft.setPower(0.1);
                 fright.setPower(-0.1);
+                BLeft.setPower(-0.3);
+                BRight.setPower(0.3);
+                FLeft.setPower(0.3);
+                FRight.setPower(-0.3 );
             }
         }
     }
