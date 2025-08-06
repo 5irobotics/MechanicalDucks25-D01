@@ -7,12 +7,22 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class arm {
+public class arm extends OpMode {
     public void JoystickMove(double joystick, DcMotor motor, double pwr) {
         motor.setPower(joystick*pwr);
     }
 
     public void ButtonMove(boolean upbutton, boolean downbutton, DcMotor motor, Double pwr){
+
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void loop() {
 
     }
 }
