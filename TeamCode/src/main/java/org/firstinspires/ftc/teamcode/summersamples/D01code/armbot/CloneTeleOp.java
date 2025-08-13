@@ -25,7 +25,7 @@ public class CloneTeleOp extends OpMode {
     // subsystems
 
     private final driveTeleOpClone drivesubsystem = new driveTeleOpClone();
-    private final driveTeleOpClone DPAD = new driveTeleOpClone();
+
     private final arm armsubsystem = new arm();
 
 
@@ -56,11 +56,15 @@ public class CloneTeleOp extends OpMode {
         drivesubsystem.Move(gamepad1.right_stick_y,
                             gamepad1.right_stick_x,
                             FLeft, BLeft, FRight, BRight);
-        DPAD.Move(gamepad1.dpad_up,
-                  gamepad1.dpad_right,
-                  gamepad1.dpad_down,
-                  gamepad1.dpad_left,
-                  FLeft, BLeft, FRight, BRight);
+        drivesubsystem.DPAD(gamepad1.dpad_up,
+                            gamepad1.dpad_right,
+                            gamepad1.dpad_down,
+                            gamepad1.dpad_left,
+                            FLeft, BLeft, FRight, BRight);
+
+        drivesubsystem.rotation(gamepad1.right_bumper, gamepad1.left_bumper,
+                                FLeft, BLeft, FRight, BRight);
+
         //armsubsystem.JoystickMove(gamepad2.right_stick_y, Arm, 1);
     }
 }

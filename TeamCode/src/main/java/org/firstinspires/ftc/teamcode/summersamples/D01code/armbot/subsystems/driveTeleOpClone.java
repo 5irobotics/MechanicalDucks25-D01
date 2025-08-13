@@ -58,4 +58,30 @@ public class driveTeleOpClone extends OpMode {
 
 
 
+
+
+
+
+
+
+
+
+
+     public void rotation(boolean right, boolean left,
+                          DcMotor motorfl, DcMotor motorbl, DcMotor motorfr, DcMotor motorbr){
+         if (right){
+             motorfl.setPower(-1);
+             motorbl.setPower(-1);
+             motorfr.setPower(1);
+             motorbr.setPower(1);
+
+         }
+         if (left){
+             motorfl.setPower(1);
+             motorbl.setPower(1);
+             motorfr.setPower(-1);
+             motorbr.setPower(-1);
+
+         }
+    }
 }
