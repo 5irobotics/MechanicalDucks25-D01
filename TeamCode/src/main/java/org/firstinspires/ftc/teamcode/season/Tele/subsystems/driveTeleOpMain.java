@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.summersamples.D01code.armbot.subsystems;
+package org.firstinspires.ftc.teamcode.season.Tele.subsystems;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @TeleOp
-public class driveTeleOpClone extends OpMode {
+public class driveTeleOpMain extends OpMode {
 
     @Override
     public void init() {

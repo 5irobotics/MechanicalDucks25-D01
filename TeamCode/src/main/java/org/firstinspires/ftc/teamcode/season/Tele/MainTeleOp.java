@@ -1,15 +1,15 @@
-package org.firstinspires.ftc.teamcode.summersamples.D01code.armbot;
+package org.firstinspires.ftc.teamcode.season.Tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.summersamples.D01code.armbot.subsystems.driveTeleOpClone;
 import org.firstinspires.ftc.teamcode.summersamples.D01code.armbot.subsystems.spin;
+import org.firstinspires.ftc.teamcode.summersamples.D01code.armbot.subsystems.driveTeleOpClone;
 
 @TeleOp
-public class CloneTeleOp extends OpMode {
+public class MainTeleOp extends OpMode {
     /*
 
     declare variables
@@ -20,12 +20,12 @@ public class CloneTeleOp extends OpMode {
     public DcMotor FRight;
     public DcMotor BLeft;
     public DcMotor BRight;
-    public DcMotor Arm;
+    public DcMotor Spin;
 
     // subsystems
 
     private final driveTeleOpClone driveSubsystem = new driveTeleOpClone();
-    private final spin armsubsystem = new spin();
+    private final spin spinSubsystem = new spin();
 
 
     public void init() {
@@ -38,7 +38,7 @@ public class CloneTeleOp extends OpMode {
         FRight.setDirection(DcMotorSimple.Direction.FORWARD);
         BLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         BRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        //Arm = hardwareMap.get(DcMotor.class,"spin");
+        Spin = hardwareMap.get(DcMotor.class,"spin");
 
         FLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -62,6 +62,6 @@ public class CloneTeleOp extends OpMode {
                   FLeft, BLeft, FRight, BRight);
         driveSubsystem.rotation(gamepad1.right_bumper, gamepad1.left_bumper,
                 FLeft, BLeft, FRight, BRight);
-        //armsubsystem.JoystickMove(gamepad2.right_stick_y, Arm, 1);
+        spinSubsystem.JoystickMove(gamepad2.right_stick_y, Spin, 0.5);
     }
 }

@@ -1,15 +1,13 @@
-package org.firstinspires.ftc.teamcode.summersamples.D01code.armbot;
+package org.firstinspires.ftc.teamcode.season.Tele;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.summersamples.D01code.armbot.subsystems.driveAutoClone;
 
 @Autonomous
-public class CloneAuto extends LinearOpMode {
+public class MainAuto extends LinearOpMode {
 
 
     /*
